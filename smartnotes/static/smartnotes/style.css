@@ -1,0 +1,85 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #9b8f8f;
+}
+
+.page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    background: white;
+    padding: 25px 30px;
+    width: 420px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+
+.card h2 {
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.note-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.note-form input {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #aaa;
+}
+
+.note-form button {
+    background: #1e73be;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.notes-list {
+    list-style: none;
+    padding: 0;
+}
+
+.notes-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.delete-btn {
+    border: 1px solid black;
+    background: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background: red;
+    color: white;
+}
+
+.empty {
+    text-align: center;
+    color: gray;
+}

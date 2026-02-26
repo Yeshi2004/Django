@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Notes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'smartnotes/style.css' %}">
+</head>
+<body>
+
+<div class="page">
+    <div class="card">
+        <h2>My Notes</h2>
+
+        <form method="POST" class="note-form">
+            {% csrf_token %}
+            <input type="text" name="content" placeholder="Write a short notes">
+            <button type="submit">Add</button>
+        </form>
+
+        <ul class="notes-list">
+            {% for note in notes %}
+                <li>
+                    {{ note.content }}
+                    <form method="POST" action="{% url 'smartnotes:delete' note.id %}">
+                        {% csrf_token %}
+                        <button class="delete-btn">X</button>
+                    </form>
+                </li>
+            {% empty %}
+                <p class="empty">No notes yet</p>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

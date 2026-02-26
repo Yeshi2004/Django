@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'smartnotes',
+    'notes',
     "polls.apps.PollsConfig",
     'django.contrib.admin',
     'django.contrib.auth',
