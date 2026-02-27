@@ -35,10 +35,7 @@
             border-radius: 13px;
             cursor: text;
         }
-        form{   
-            width: 250px;
-            margin: auto;
-        }
+
         button{
             font-family: Constantia;
             color: #ddd;
@@ -67,11 +64,14 @@
         </style>
     </head>
     <body>
+        <form method="post" action="{% url 'logout' %}" style="text-align: right; ">
+        {% csrf_token %}
+        <button type="submit"  style="background-color: black; color: white; padding: 2px;" onmouseover="this.style.background='darkred'" onmouseout="this.style.background='black'" >Logout</button>
+        </form>
         <h2>My Notes</h2>
         <form>
             <input type="text" id="notes" placeholder="Write a short notes">
             <button type="button" id="button1">Add</button>
-
         </form>
         <ul id="noteList"></ul>
         <script>document.getElementById("button1").addEventListener("click",function(){
