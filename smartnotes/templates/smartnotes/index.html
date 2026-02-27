@@ -1,38 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My Notes</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'smartnotes/style.css' %}">
-</head>
-<body>
-
-<div class="page">
-    <div class="card">
+<html>
+    <head>
+        <title>
+            KEEP NOTES
+        </title>
+        <style>
+        .note-card{
+            padding: 8px;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 10px;
+            margin: 8px 0;
+    
+        }
+        html{
+            background-color: rgb(143, 132, 132);
+        }
+        body{
+            width: 350px;
+            margin: 100px auto;
+            padding: 16px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 2px 2px 4px 4px rgba(15, 3, 3, 0.527);
+        }
+        h2{
+            text-align: center;
+            font-style: oblique;  
+        }
+        input{
+            width: 160px;
+            padding: 8px;
+            border-radius: 13px;
+            cursor: text;
+        }
+        form{   
+            width: 250px;
+            margin: auto;
+        }
+        button{
+            font-family: Constantia;
+            color: #ddd;
+            background-color: rgb(13, 103, 177);
+            cursor: pointer;
+            width: 60px;
+            padding: 8px;
+            border-radius: 13px;
+            }
+        .delete-btn{
+            color:#000000;
+            background-color: white;
+            cursor: pointer;
+            width: 22px;
+            padding: 3px;
+            border-radius: 20px;
+        }
+        button:hover{
+            background-color: rgb(13, 103, 177);
+            color: rgba(5, 1, 1, 0.534);
+        }
+        .delete-btn:hover{
+            background-color: rgb(238, 28, 28);
+            color: white;
+        }
+        </style>
+    </head>
+    <body>
         <h2>My Notes</h2>
+        <form>
+            <input type="text" id="notes" placeholder="Write a short notes">
+            <button type="button" id="button1">Add</button>
 
-        <form method="POST" class="note-form">
-            {% csrf_token %}
-            <input type="text" name="content" placeholder="Write a short notes">
-            <button type="submit">Add</button>
         </form>
+        <ul id="noteList"></ul>
+        <script>document.getElementById("button1").addEventListener("click",function(){
+    let note=document.getElementById("notes").value;
+    if(note==""){
+        alert("Please enter a note");
+        return false;
+        }
 
-        <ul class="notes-list">
-            {% for note in notes %}
-                <li>
-                    {{ note.content }}
-                    <form method="POST" action="{% url 'smartnotes:delete' note.id %}">
-                        {% csrf_token %}
-                        <button class="delete-btn">X</button>
-                    </form>
-                </li>
-            {% empty %}
-                <p class="empty">No notes yet</p>
-            {% endfor %}
-        </ul>
-    </div>
-</div>
+    let li=document.createElement("li");
+    li.className = "note-card";
 
-</body>
+    let span = document.createElement("span");
+    span.textContent = note;
+
+    let delBtn = document.createElement("button");
+    delBtn.textContent = "X";
+    delBtn.className="delete-btn";
+
+    delBtn.addEventListener("click", function () {
+    li.remove();
+    });
+
+    li.appendChild(span);
+    li.appendChild(delBtn);
+
+    document.getElementById("noteList").appendChild(li);
+    document.getElementById("notes").value = "";
+    });
+   </script>
+    </body>
 </html>
